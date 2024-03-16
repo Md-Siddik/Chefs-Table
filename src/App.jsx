@@ -1,11 +1,16 @@
 import './App.css'
+import Header from './components/header/Header'
+import Banner from './components/banner/Banner'
+import Recipes from './components/recipes/Recipes'
 
 function App() {
 
   return (
     <>
       <div>
-        <h1 className='text-3xl font-bold'>Testing Tailwind</h1>
+        <Header></Header>
+        <Banner></Banner>
+        <Recipes></Recipes>
       </div>
     </>
   )
