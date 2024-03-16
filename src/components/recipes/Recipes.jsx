@@ -1,6 +1,17 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import Cards from "./cards/Cards";
 import Schedule from "./cards/Schedule";
 const Recipes = () => {
+
+    const [cards, setCards] = useState([]);
+
+    useEffect(() => {
+        fetch('blogs.json')
+            .then(res => res.json())
+            .then(data => setCards(data))
+    }, [])
+
     return (
         <div>
             <div className="w-[65%] m-auto p-20 text-center">
@@ -9,8 +20,12 @@ const Recipes = () => {
             </div>
 
             <div className="cards flex justify-between">
-                <Cards></Cards>
-                <Cards></Cards>
+                {/* <h1>{cards.length}</h1> */}
+                <div className="cardGrid">
+                    {
+                        cards.map(cards => <Cards></Cards>)
+                    }
+                </div>
                 <Schedule></Schedule>
             </div>
         </div>

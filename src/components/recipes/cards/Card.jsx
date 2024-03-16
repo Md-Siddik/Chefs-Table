@@ -1,4 +1,5 @@
 const Card = () => {
+
     return (
         <div className="w-[350px] border-[1px] rounded-2xl">
             <div className="bg-gray-500 w-[300px] h-[180px] m-auto mt-[25px] rounded-2xl">

@@ -6,9 +6,9 @@
 .banner {
     background-image: url('../src/assets/image/Banner.png');
 }
-.cards {
+.cardGrid {
   display: grid;
-  grid-template-columns: repeat(3, 0fr);
+  grid-template-columns: repeat(2, 0fr);
   gap: 20px;
 }
 .wantTable td {
