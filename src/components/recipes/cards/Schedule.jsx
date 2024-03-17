@@ -1,12 +1,21 @@
+import { useEffect, useState } from "react";
 import Cooking from "./Cooking";
 import Preparing from "./Preparing";
 
-const Schedule = () => {
+const Schedule = ({schedules}) => {
+    // const [preparing, setPreparing] = useState([]);
+
+    // useEffect(()=>{
+    //     fetch('blogs.json')
+    //     .then(res => res.json())
+    //     .then(data => setPreparing(data))
+    // },[])
+
     return (
         <div className="border-[1px] rounded-xl">
             <div>
                 <div>
-                    <h1 className="text-xl font-bold text-center py-6">Want to cook: 01</h1>
+                    <h1 className="text-xl font-bold text-center py-6">Want to cook: {schedules.length}</h1>
                     <hr />
                 </div>
                 <div>
@@ -18,8 +27,9 @@ const Schedule = () => {
                             <th>Calories</th>
                             <th></th>
                         </tr>
-                        <Preparing></Preparing>
-                        <Preparing></Preparing>
+                        {
+                            schedules.map(preparing => <Preparing schedules={schedules}></Preparing>)
+                        }
                     </table>
                 </div>
             </div>

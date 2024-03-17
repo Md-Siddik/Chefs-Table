@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import List from './list/List';
 
-const Card = ({cards}) => {
-    console.log(cards)
-    const {title} = cards;
+const Card = ({card, handleSchedule}) => {
+    const {recipe_name, short_description, recipe_image, ingredients, preparing_time, calories} = card;
+
     return (
         <div className="w-[350px] border-[1px] rounded-2xl">
             <div className="bg-gray-500 w-[300px] h-[180px] m-auto mt-[25px] rounded-2xl">
@@ -10,16 +12,16 @@ const Card = ({cards}) => {
             </div>
             <div className="p-6">
                 <div>
-                    <h1 className="text-xl font-bold">{title}</h1>
-                    <p className="py-3 text-[#878787]">Classic Italian pasta dish with savory meat sauce.</p>
+                    <h1 className="text-xl font-bold">{recipe_name}</h1>
+                    <p className="py-3 text-[#878787]">{short_description}</p>
                 </div>
                 <hr />
                 <div>
-                    <h1 className="text-xl font-bold py-4">Ingredients: 6</h1>
+                    <h1 className="text-xl font-bold py-4">Ingredients: {ingredients.length}</h1>
                     <ul className="pb-4 text-[#878787]">
-                        <li>500g ground beef</li>
-                        <li>1 onion, chopped</li>
-                        <li>2 cloves garlic, minced</li>
+                        {
+                            ingredients.map(list => <List list={list}></List>)
+                        }
                     </ul>
                 </div>
                 <hr />
@@ -29,7 +31,7 @@ const Card = ({cards}) => {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
 
-                        <p>30 minutes</p>
+                        <p>{preparing_time} minutes</p>
                     </div>
                     <div className="flex">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -37,11 +39,11 @@ const Card = ({cards}) => {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
                         </svg>
 
-                        <p>600 calories</p>
+                        <p>{calories} calories</p>
                     </div>
                 </div>
                 <div>
-                    <button className="text-lg font-bold bg-[#0BE58A] px-5 py-2 rounded-full">Want to Cook</button>
+                    <button className="text-lg font-bold bg-[#0BE58A] px-5 py-2 rounded-full" onClick={() => {handleSchedule(card)}}>Want to Cook</button>
                 </div>
             </div>
         </div>

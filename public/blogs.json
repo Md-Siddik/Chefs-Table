@@ -34,7 +34,7 @@
         "recipe_name": "Chocolate Chip Cookies",
         "short_description": "Classic homemade cookies with chocolate chips.",
         "recipe_image": "chocolate_chip_cookies.jpg",
-        "ingredients": ["200g all-purpose flour", "100g butter", "100g white sugar", "100g brown sugar", "1 egg", "1 tsp vanilla extract", "100g chocolate chips"],
+        "ingredients": ["200g all-purpose flour", "100g butter", "100g white sugar", "100g brown sugar", "1 egg"],
         "instructions": "Preheat oven to 350°F (175°C). In a bowl, cream together softened butter, white sugar, and brown sugar until smooth. Beat in the egg and vanilla extract. Gradually blend in the flour. Stir in the chocolate chips. Drop dough by rounded spoonfuls onto ungreased cookie sheets. Bake for 10 to 12 minutes until edges are golden brown. Let cookies cool on baking sheet for 5 minutes before transferring to wire racks to cool completely.",
         "preparing_time": 20,
         "calories": 150

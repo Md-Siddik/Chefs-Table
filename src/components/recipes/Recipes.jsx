@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Card from "./cards/Card";
 import Schedule from "./cards/Schedule";
-const Recipes = () => {
+const Recipes = ({handleSchedule}) => {
 
     const [cards, setCards] = useState([]);
 
@@ -22,7 +22,7 @@ const Recipes = () => {
             <div className="cards flex justify-between">
                 <div className="cardGrid">
                     {
-                        cards.map(cards => <Card></Card>)
+                        cards.map(card => <Card card={card} handleSchedule={handleSchedule}></Card>)
                     }
                 </div>
                 <Schedule></Schedule>
