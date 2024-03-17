@@ -1,5 +1,8 @@
-const Card = () => {
+import PropTypes from 'prop-types';
 
+const Card = ({cards}) => {
+    console.log(cards)
+    const {title} = cards;
     return (
         <div className="w-[350px] border-[1px] rounded-2xl">
             <div className="bg-gray-500 w-[300px] h-[180px] m-auto mt-[25px] rounded-2xl">
@@ -7,7 +10,7 @@ const Card = () => {
             </div>
             <div className="p-6">
                 <div>
-                    <h1 className="text-xl font-bold">Chicken Caesar Salad</h1>
+                    <h1 className="text-xl font-bold">{title}</h1>
                     <p className="py-3 text-[#878787]">Classic Italian pasta dish with savory meat sauce.</p>
                 </div>
                 <hr />
@@ -44,5 +47,9 @@ const Card = () => {
         </div>
     );
 };
+
+Card.PropTypes = {
+    card: PropTypes.object.isRequired
+}
 
 export default Card;

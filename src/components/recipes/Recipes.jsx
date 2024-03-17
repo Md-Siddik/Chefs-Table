@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Cards from "./cards/Cards";
+import Card from "./cards/Card";
 import Schedule from "./cards/Schedule";
 const Recipes = () => {
 
@@ -20,10 +20,9 @@ const Recipes = () => {
             </div>
 
             <div className="cards flex justify-between">
-                {/* <h1>{cards.length}</h1> */}
                 <div className="cardGrid">
                     {
-                        cards.map(cards => <Cards></Cards>)
+                        cards.map(cards => <Card></Card>)
                     }
                 </div>
                 <Schedule></Schedule>
