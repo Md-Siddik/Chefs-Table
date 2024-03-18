@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import Cooking from "./Cooking";
 import Preparing from "./Preparing";
 
-const Schedule = ({schedules}) => {
-    // const [preparing, setPreparing] = useState([]);
+const Schedule = ({schedules, handleCooking}) => {
 
-    // useEffect(()=>{
-    //     fetch('blogs.json')
-    //     .then(res => res.json())
-    //     .then(data => setPreparing(data))
-    // },[])
+    // const preparing = schedules[schedules.length-1];
+    // console.log(preparing);
 
     return (
         <div className="border-[1px] rounded-xl">
@@ -28,7 +24,7 @@ const Schedule = ({schedules}) => {
                             <th></th>
                         </tr>
                         {
-                            schedules.map(preparing => <Preparing schedules={schedules}></Preparing>)
+                            schedules.map(preparing => <Preparing schedules={schedules} preparing={preparing} handleCooking={handleCooking}></Preparing>)
                         }
                     </table>
                 </div>

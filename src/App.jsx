@@ -6,24 +6,34 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Card from './components/recipes/cards/Card'
 import Schedule from './components/recipes/cards/Schedule'
+import Cooking from './components/recipes/cards/Cooking'
 
 function App() {
 
   const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        fetch('blogs.json')
-            .then(res => res.json())
-            .then(data => setCards(data))
-    }, [])
-
   const [schedules, setSchedules] = useState([]);
+  const [cooking, setCooking] = useState([]);
 
-  const handleSchedule = card => {
-    const newSchedule = [...schedules, card];
-    setSchedules(newSchedule);
-    
-    console.log(card.recipe_name)
+  useEffect(() => {
+    fetch('blogs.json')
+      .then(res => res.json())
+      .then(data => setCards(data))
+  }, [])
+
+  const handleSchedule = (schedule) => {
+    const search = schedules.find(food => food.recipe_id == schedule.recipe_id);
+    if (!search) {
+      setSchedules([...schedules, schedule]);
+    }
+    else {
+      alert("Already exist")
+    }
+  };
+
+
+  const handleCooking = (cook) => {
+    setCooking([...cooking, cook]);
+  // console.log(cook);
   }
 
   return (
@@ -43,7 +53,7 @@ function App() {
                 cards.map(card => <Card card={card} handleSchedule={handleSchedule}></Card>)
               }
             </div>
-            <Schedule schedules={schedules}></Schedule>
+            <Schedule schedules={schedules} handleCooking={handleCooking}></Schedule>
           </div>
         </div>
         {/* <Recipes handleSchedule={handleSchedule}></Recipes> */}

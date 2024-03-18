@@ -1,4 +1,7 @@
-const Cooking = () => {
+const Cooking = ({cooking}) => {
+
+    console.log(cooking);
+    
     return (
         <tr className="bg-gray-100 border-[1px]">
             <td>1</td>
