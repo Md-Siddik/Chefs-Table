@@ -1,13 +1,12 @@
-const Cooking = ({cooking}) => {
-
-    console.log(cooking);
-    
+const Cooking = (cooking) => {
+    const {recipe_name, preparing_time, calories} = cooking.cooking;
+    const indexNum = cooking.index;
     return (
         <tr className="bg-gray-100 border-[1px]">
-            <td>1</td>
-            <td>Spaghetti Bolognese</td>
-            <td>30 minutes</td>
-            <td>600 calories</td>
+            <td>{indexNum+1}</td>
+            <td>{recipe_name}</td>
+            <td>{preparing_time} minutes</td>
+            <td>{calories} calories</td>
         </tr>
     );
 };

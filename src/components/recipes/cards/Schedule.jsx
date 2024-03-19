@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import Cooking from "./Cooking";
 import Preparing from "./Preparing";
+import List from "./list/List";
 
-const Schedule = ({schedules, handleCooking}) => {
-
-    // const preparing = schedules[schedules.length-1];
-    // console.log(preparing);
+const Schedule = ({ schedules, handleDelete, cooking, totalTime, totalCalorie }) => {
 
     return (
         <div className="border-[1px] rounded-xl">
@@ -24,7 +22,7 @@ const Schedule = ({schedules, handleCooking}) => {
                             <th></th>
                         </tr>
                         {
-                            schedules.map(preparing => <Preparing schedules={schedules} preparing={preparing} handleCooking={handleCooking}></Preparing>)
+                            schedules.map((preparing, index) => <Preparing index={index} handleDelete={handleDelete} schedules={schedules} preparing={preparing}></Preparing>)
                         }
                     </table>
                 </div>
@@ -43,8 +41,10 @@ const Schedule = ({schedules, handleCooking}) => {
                             <th>Calories</th>
                             <th></th>
                         </tr>
-                        <Cooking></Cooking>
-                        <Cooking></Cooking>
+
+                        {
+                            cooking.map((cooking, index) => <Cooking index={index} cooking={cooking}></Cooking>)
+                        }
                         <tr>
                             <td></td>
                             <td></td>
@@ -54,8 +54,8 @@ const Schedule = ({schedules, handleCooking}) => {
                         <tr>
                             <td></td>
                             <td></td>
-                            <td>45 minutes</td>
-                            <td>1050 calories</td>
+                            <td>{totalTime} minutes</td>
+                            <td>{totalCalorie} calories</td>
                         </tr>
                     </table>
                 </div>

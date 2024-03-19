@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import List from './list/List';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({card, handleSchedule}) => {
     const {recipe_name, short_description, recipe_image, ingredients, preparing_time, calories} = card;
 
     return (
         <div className="w-[350px] border-[1px] rounded-2xl">
-            <div className="bg-gray-500 w-[300px] h-[180px] m-auto mt-[25px] rounded-2xl">
-                <img src="" alt="Testing" />
+            <div className="bg-gray-500 w-[300px] h-[180px] m-auto mt-[25px] rounded-2xl overflow-hidden">
+                <img className='w-full h-full' src={recipe_image} alt="Testing" />
             </div>
             <div className="p-6">
                 <div>
@@ -18,7 +20,7 @@ const Card = ({card, handleSchedule}) => {
                 <hr />
                 <div>
                     <h1 className="text-xl font-bold py-4">Ingredients: {ingredients.length}</h1>
-                    <ul className="pb-4 text-[#878787]">
+                    <ul className="pl-8 pb-4 text-[#878787] list-disc">
                         {
                             ingredients.map(list => <List list={list}></List>)
                         }
@@ -44,6 +46,7 @@ const Card = ({card, handleSchedule}) => {
                 </div>
                 <div>
                     <button className="text-lg font-bold bg-[#0BE58A] px-5 py-2 rounded-full" onClick={() => {handleSchedule(card)}}>Want to Cook</button>
+                    <ToastContainer></ToastContainer>
                 </div>
             </div>
         </div>

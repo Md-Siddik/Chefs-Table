@@ -6,13 +6,16 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Card from './components/recipes/cards/Card'
 import Schedule from './components/recipes/cards/Schedule'
-import Cooking from './components/recipes/cards/Cooking'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
   const [cards, setCards] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const [cooking, setCooking] = useState([]);
+  const [total, setTotal] = useState([]);
+  const [calorie, setCalorie] = useState([]);
 
   useEffect(() => {
     fetch('blogs.json')
@@ -26,15 +29,38 @@ function App() {
       setSchedules([...schedules, schedule]);
     }
     else {
-      alert("Already exist")
+      toast("Already Included");
     }
   };
 
+  const handleDelete = (id, preparing, time) => {
+    setCooking([...cooking, preparing]);
+    const newCooking = schedules.filter(item => item.recipe_id != id);
+    setSchedules(newCooking);
 
-  const handleCooking = (cook) => {
-    setCooking([...cooking, cook]);
-  // console.log(cook);
+    const currentTime = schedules.find(times => times.preparing_time == preparing.preparing_time);
+    setTotal([...total, currentTime]);
+
+    const currentCalorie = schedules.find(calorie => calorie.calories == preparing.calories);
+    setCalorie([...calorie, currentCalorie]);
   }
+
+  let preTime = 0;
+  let preCalories = 0;
+  const showTime = () => {
+    const allTime = total.map((all) => all.preparing_time);
+    for(let times of allTime){
+      preTime = preTime + times;
+    }
+    
+    const allCalorie = calorie.map(cal => cal.calories);
+    for(let currentCalories of allCalorie){
+      preCalories = preCalories + currentCalories;
+    }
+
+  }
+  showTime();
+
 
   return (
     <>
@@ -53,10 +79,9 @@ function App() {
                 cards.map(card => <Card card={card} handleSchedule={handleSchedule}></Card>)
               }
             </div>
-            <Schedule schedules={schedules} handleCooking={handleCooking}></Schedule>
+            <Schedule schedules={schedules} handleDelete={handleDelete} cooking={cooking} totalTime={preTime} totalCalorie={preCalories}></Schedule>
           </div>
         </div>
-        {/* <Recipes handleSchedule={handleSchedule}></Recipes> */}
       </div>
     </>
   )
